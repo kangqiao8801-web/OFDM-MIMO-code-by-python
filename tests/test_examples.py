@@ -57,3 +57,18 @@ def test_batch2_capacity_examples_write_outputs(tmp_path):
         out_dir = run_example(name, tmp_path)
         assert any(path.suffix == ".png" and path.stat().st_size > 0 for path in out_dir.iterdir())
         assert any(path.suffix == ".dat" and path.stat().st_size > 0 for path in out_dir.iterdir())
+
+
+def test_batch3_ofdm_sync_examples_write_outputs(tmp_path):
+    for name in [
+        "cfo_estimation",
+        "sto_estimation",
+        "ofdm_signal",
+        "ccdf_ofdma",
+        "pdf_clipped_filtered_ofdm_signal",
+        "ccdf_clipped_filtered_ofdm_signal",
+        "do_sto_cfo1",
+    ]:
+        out_dir = run_example(name, tmp_path)
+        assert any(path.suffix == ".png" and path.stat().st_size > 0 for path in out_dir.iterdir())
+        assert any(path.suffix == ".dat" and path.stat().st_size > 0 for path in out_dir.iterdir())

@@ -7,9 +7,9 @@
 ## 汇总
 
 - MATLAB `.m` 文件总数：153
-- 已转译成功：59
+- 已转译成功：74
 - 部分覆盖：0
-- 未转译：94
+- 未转译：79
 
 
 ## 批次方案
@@ -20,7 +20,7 @@
 |---|---|---:|---|---|---|
 | 1 | 调制/编码/判决/误码 | 23 | 补齐 QPSK/QAM16/mapper/Viterbi/卷积编码/BER 等公共函数与必要示例 | 单元测试覆盖 MATLAB 等价输入输出；相关示例跑通 | 是 |
 | 2 | 工具/数值辅助 | 27 | `Q`、`dB2w`、补零、插值、范数、排序、MMSE 前处理等基础工具 | 单元测试为主；无图脚本保存 `.dat` 或数值摘要 | 是 |
-| 3 | OFDM/同步/信道估计 | 15 | CFO/STO、pilot、OFDM signal、削波滤波 CCDF/PDF 相关脚本 | 每个 example 跑通，保存图或 `.dat` | 否 |
+| 3 | OFDM/同步/信道估计 | 15 | CFO/STO、pilot、OFDM signal、削波滤波 CCDF/PDF 相关脚本 | 每个 example 跑通，保存图或 `.dat` | 是 |
 | 4 | PAPR/CCDF/削波 | 13 | PAPR、PTS、DFT spreading、oversampling、clipping 相关脚本 | 每个脚本生成 CCDF/PAPR/SQNR 图或数据 | 否 |
 | 5 | 信道模型/衰落/路径损耗 | 24 | FWGN、Jakes、Ray/Ric、SUI、UWB、路径损耗模型 | 模型函数单测；绘图/仿真脚本生成图 | 否 |
 | 6 | MIMO/STBC/检测/预编码/容量 | 27 | Alamouti 扩展、MRC、MMSE/OSIC/SD/QRM、容量、预编码、STTC | 仿真脚本 quick 模式跑通，保存 BER/容量曲线或数据 | 否 |
@@ -56,26 +56,26 @@
 | MIMO/STBC/检测/预编码/容量 | `codebook_generator.m` | 否 | - | 待转译 | 6 | 否 |
 | MIMO/STBC/检测/预编码/容量 | `multi_user_MIMO.m` | 否 | - | 待转译 | 6 | 否 |
 | MIMO/STBC/检测/预编码/容量 | `original_LLL_.m` | 否 | - | 待转译 | 6 | 否 |
-| OFDM/同步/信道估计 | `CCDF_OFDMA.m` | 否 | - | 待转译 | 3 | 否 |
-| OFDM/同步/信道估计 | `CCDF_of_clipped_filtered_OFDM_signal.m` | 否 | - | 待转译 | 3 | 否 |
-| OFDM/同步/信道估计 | `CFO_CP.m` | 否 | - | 待转译 | 3 | 否 |
-| OFDM/同步/信道估计 | `CFO_Classen.m` | 否 | - | 待转译 | 3 | 否 |
-| OFDM/同步/信道估计 | `CFO_Moose.m` | 否 | - | 待转译 | 3 | 否 |
-| OFDM/同步/信道估计 | `CFO_estimation.m` | 否 | - | 待转译 | 3 | 否 |
+| OFDM/同步/信道估计 | `CCDF_OFDMA.m` | 是 | `src/ofdm_mimo/ofdm.py::ccdf_ofdma`; `examples/ccdf_ofdma.py` | 公共函数和可运行示例，已通过 pytest 与 quick 运行 | 3 | 是 |
+| OFDM/同步/信道估计 | `CCDF_of_clipped_filtered_OFDM_signal.m` | 是 | `examples/ccdf_clipped_filtered_ofdm_signal.py` | 可运行示例，quick 模式已生成 CCDF 图和数据 | 3 | 是 |
+| OFDM/同步/信道估计 | `CFO_CP.m` | 是 | `src/ofdm_mimo/ofdm.py::cfo_cp` | CP CFO 估计入口，已通过单元测试 | 3 | 是 |
+| OFDM/同步/信道估计 | `CFO_Classen.m` | 是 | `src/ofdm_mimo/ofdm.py::cfo_classen` | Classen CFO 估计入口，已通过单元测试 | 3 | 是 |
+| OFDM/同步/信道估计 | `CFO_Moose.m` | 是 | `src/ofdm_mimo/ofdm.py::cfo_moose` | Moose CFO 估计入口，已通过单元测试 | 3 | 是 |
+| OFDM/同步/信道估计 | `CFO_estimation.m` | 是 | `examples/cfo_estimation.py` | 可运行示例，quick 模式已生成 CFO MSE 图和数据 | 3 | 是 |
 | OFDM/同步/信道估计 | `LS_CE.m` | 是 | `src/ofdm_mimo/channel_estimation.py::ls_ce` | 公共函数，已通过单元测试 | 已完成 | 是 |
 | OFDM/同步/信道估计 | `MMSE_CE.m` | 是 | `src/ofdm_mimo/channel_estimation.py::mmse_ce` | 公共函数，已通过单元测试 | 已完成 | 是 |
 | OFDM/同步/信道估计 | `OFDM_basic.m` | 是 | `examples/ofdm_basic.py` | 可运行示例，已通过 pytest 和默认运行 | 已完成 | 是 |
-| OFDM/同步/信道估计 | `OFDM_signal.m` | 否 | - | 待转译 | 3 | 否 |
-| OFDM/同步/信道估计 | `PDF_of_clipped_and_filtered_OFDM_signal.m` | 否 | - | 待转译 | 3 | 否 |
-| OFDM/同步/信道估计 | `STO_by_correlation.m` | 否 | - | 待转译 | 3 | 否 |
-| OFDM/同步/信道估计 | `STO_by_difference.m` | 否 | - | 待转译 | 3 | 否 |
-| OFDM/同步/信道估计 | `STO_estimation.m` | 否 | - | 待转译 | 3 | 否 |
-| OFDM/同步/信道估计 | `add_CFO.m` | 否 | - | 待转译 | 3 | 否 |
+| OFDM/同步/信道估计 | `OFDM_signal.m` | 是 | `examples/ofdm_signal.py` | 可运行示例，quick 模式已生成 OFDM 分量和 PDF 图 | 3 | 是 |
+| OFDM/同步/信道估计 | `PDF_of_clipped_and_filtered_OFDM_signal.m` | 是 | `examples/pdf_clipped_filtered_ofdm_signal.py` | 可运行示例，quick 模式已生成 PDF/PSD 图和数据 | 3 | 是 |
+| OFDM/同步/信道估计 | `STO_by_correlation.m` | 是 | `src/ofdm_mimo/ofdm.py::sto_by_correlation` | 相关法 STO 估计入口，已通过单元测试 | 3 | 是 |
+| OFDM/同步/信道估计 | `STO_by_difference.m` | 是 | `src/ofdm_mimo/ofdm.py::sto_by_difference` | 差分法 STO 估计入口，已通过单元测试 | 3 | 是 |
+| OFDM/同步/信道估计 | `STO_estimation.m` | 是 | `examples/sto_estimation.py` | 可运行示例，quick 模式已生成 STO 估计图和数据 | 3 | 是 |
+| OFDM/同步/信道估计 | `add_CFO.m` | 是 | `src/ofdm_mimo/ofdm.py::add_cfo` | CFO 注入入口，已通过单元测试 | 3 | 是 |
 | OFDM/同步/信道估计 | `add_CP.m` | 是 | `src/ofdm_mimo/ofdm.py::add_cp` | 公共函数，已通过单元测试 | 已完成 | 是 |
-| OFDM/同步/信道估计 | `add_STO.m` | 否 | - | 待转译 | 3 | 否 |
-| OFDM/同步/信道估计 | `add_pilot.m` | 否 | - | 待转译 | 3 | 否 |
+| OFDM/同步/信道估计 | `add_STO.m` | 是 | `src/ofdm_mimo/ofdm.py::add_sto` | STO 注入入口，已通过单元测试 | 3 | 是 |
+| OFDM/同步/信道估计 | `add_pilot.m` | 是 | `src/ofdm_mimo/ofdm.py::add_pilot` | CAZAC pilot 插入入口，已通过单元测试 | 3 | 是 |
 | OFDM/同步/信道估计 | `channel_estimation.m` | 是 | `examples/channel_estimation.py` | 可运行示例，已通过 pytest 和默认运行 | 已完成 | 是 |
-| OFDM/同步/信道估计 | `do_STO_CFO1.m` | 否 | - | 待转译 | 3 | 否 |
+| OFDM/同步/信道估计 | `do_STO_CFO1.m` | 是 | `examples/do_sto_cfo1.py` | 可运行帧同步/CFO 示例，quick 模式已生成图和数据 | 3 | 是 |
 | OFDM/同步/信道估计 | `remove_CP.m` | 是 | `src/ofdm_mimo/ofdm.py::remove_cp` | 公共函数，已通过单元测试 | 已完成 | 是 |
 | OFDM/同步/信道估计 | `remove_GI.m` | 是 | `src/ofdm_mimo/ofdm.py::remove_gi` | 公共函数，已通过单元测试 | 已完成 | 是 |
 | PAPR/CCDF/削波 | `CCDF_PAPR_DFTspreading.m` | 否 | - | 待转译 | 4 | 否 |
