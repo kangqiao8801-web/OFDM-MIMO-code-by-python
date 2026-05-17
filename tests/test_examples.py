@@ -88,3 +88,16 @@ def test_batch4_papr_examples_write_outputs(tmp_path):
         out_dir = run_example(name, tmp_path)
         assert any(path.suffix == ".png" and path.stat().st_size > 0 for path in out_dir.iterdir())
         assert any(path.suffix == ".dat" and path.stat().st_size > 0 for path in out_dir.iterdir())
+
+
+def test_batch5_channel_model_examples_write_outputs(tmp_path):
+    for name in [
+        "path_loss_models",
+        "doppler_fwgn_models",
+        "sui_channel_models",
+        "uwb_channel_models",
+        "fading_channel_models",
+    ]:
+        out_dir = run_example(name, tmp_path)
+        assert any(path.suffix == ".png" and path.stat().st_size > 0 for path in out_dir.iterdir())
+        assert any(path.suffix == ".dat" and path.stat().st_size > 0 for path in out_dir.iterdir())

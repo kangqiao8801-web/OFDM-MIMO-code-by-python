@@ -7,9 +7,9 @@
 ## 汇总
 
 - MATLAB `.m` 文件总数：153
-- 已转译成功：87
+- 已转译成功：111
 - 部分覆盖：0
-- 未转译：66
+- 未转译：42
 
 
 ## 批次方案
@@ -22,7 +22,7 @@
 | 2 | 工具/数值辅助 | 27 | `Q`、`dB2w`、补零、插值、范数、排序、MMSE 前处理等基础工具 | 单元测试为主；无图脚本保存 `.dat` 或数值摘要 | 是 |
 | 3 | OFDM/同步/信道估计 | 15 | CFO/STO、pilot、OFDM signal、削波滤波 CCDF/PDF 相关脚本 | 每个 example 跑通，保存图或 `.dat` | 是 |
 | 4 | PAPR/CCDF/削波 | 13 | PAPR、PTS、DFT spreading、oversampling、clipping 相关脚本 | 每个脚本生成 CCDF/PAPR/SQNR 图或数据 | 是 |
-| 5 | 信道模型/衰落/路径损耗 | 24 | FWGN、Jakes、Ray/Ric、SUI、UWB、路径损耗模型 | 模型函数单测；绘图/仿真脚本生成图 | 否 |
+| 5 | 信道模型/衰落/路径损耗 | 24 | FWGN、Jakes、Ray/Ric、SUI、UWB、路径损耗模型 | 模型函数单测；绘图/仿真脚本生成图 | 是 |
 | 6 | MIMO/STBC/检测/预编码/容量 | 27 | Alamouti 扩展、MRC、MMSE/OSIC/SD/QRM、容量、预编码、STTC | 仿真脚本 quick 模式跑通，保存 BER/容量曲线或数据 | 否 |
 | 7 | 可视化/绘图脚本 | 15 | `plot_*` 脚本一对一转成 Python examples | 每个脚本生成对应 PNG | 否 |
 
@@ -91,30 +91,30 @@
 | PAPR/CCDF/削波 | `compare_DFT_spreading.m` | 是 | `examples/compare_dft_spreading.py` | 可运行示例，quick 模式已生成 OFDMA/LFDMA/IFDMA CCDF 图和数据 | 4 | 是 |
 | PAPR/CCDF/削波 | `compare_DFT_spreading_w_psf.m` | 是 | `examples/compare_dft_spreading_w_psf.py` | 可运行示例，quick 模式已生成脉冲成形 CCDF 图和数据 | 4 | 是 |
 | PAPR/CCDF/削波 | `single_carrier_PAPR.m` | 是 | `examples/single_carrier_papr.py` | 可运行示例，quick 模式已生成单载波基带/通带 PAPR 图和数据 | 4 | 是 |
-| 信道模型/衰落/路径损耗 | `Doppler_PSD_function.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `Doppler_spectrum.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `FWGN.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `FWGN_ff.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `FWGN_model.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `FWGN_tf.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `IEEE802_11_model.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `Jakes_Flat.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `PL_Hata.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `PL_IEEE80216d.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `PL_free.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `PL_logdist_or_norm.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `Ray_model.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `Ric_model.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `SUI_fading.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `SUI_parameters.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `SV_model_ct.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `UWB_convert_ct.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `UWB_model_ct.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `UWB_parameters.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `channel1.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `channel_coeff.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `convert_UWB_ct.m` | 否 | - | 待转译 | 5 | 否 |
-| 信道模型/衰落/路径损耗 | `ray_fading.m` | 否 | - | 待转译 | 5 | 否 |
+| 信道模型/衰落/路径损耗 | `Doppler_PSD_function.m` | 是 | `src/ofdm_mimo/channel_models.py::doppler_psd`; `examples/doppler_fwgn_models.py` | Doppler PSD 公共函数和可运行示例，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `Doppler_spectrum.m` | 是 | `src/ofdm_mimo/channel_models.py::doppler_spectrum`; `examples/doppler_fwgn_models.py` | Clarke/Gan Doppler 频谱入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `FWGN.m` | 是 | `src/ofdm_mimo/channel_models.py::fwgn`; `examples/doppler_fwgn_models.py` | FWGN 频域衰落生成入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `FWGN_ff.m` | 是 | `src/ofdm_mimo/channel_models.py::fwgn_ff`; `examples/doppler_fwgn_models.py` | FWGN 频域滤波多径衰落入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `FWGN_model.m` | 是 | `src/ofdm_mimo/channel_models.py::fwgn`; `examples/doppler_fwgn_models.py` | 与 FWGN.m 同算法入口复用，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `FWGN_tf.m` | 是 | `src/ofdm_mimo/channel_models.py::fwgn_tf`; `examples/doppler_fwgn_models.py` | FWGN 时域滤波多径衰落入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `IEEE802_11_model.m` | 是 | `src/ofdm_mimo/channel_models.py::ieee802_11_model` | IEEE 802.11 PDP 入口，已通过单元测试 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `Jakes_Flat.m` | 是 | `src/ofdm_mimo/channel_models.py::jakes_flat`; `examples/doppler_fwgn_models.py` | Jakes flat fading 入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `PL_Hata.m` | 是 | `src/ofdm_mimo/channel_models.py::pl_hata`; `examples/path_loss_models.py` | Hata 路径损耗入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `PL_IEEE80216d.m` | 是 | `src/ofdm_mimo/channel_models.py::pl_ieee80216d`; `examples/path_loss_models.py` | IEEE 802.16d 路径损耗入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `PL_free.m` | 是 | `src/ofdm_mimo/channel_models.py::pl_free`; `examples/path_loss_models.py` | 自由空间路径损耗入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `PL_logdist_or_norm.m` | 是 | `src/ofdm_mimo/channel_models.py::pl_logdist_or_norm`; `examples/path_loss_models.py` | log-distance/log-normal 路径损耗入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `Ray_model.m` | 是 | `src/ofdm_mimo/channel_models.py::ray_model`; `examples/fading_channel_models.py` | Rayleigh 信道入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `Ric_model.m` | 是 | `src/ofdm_mimo/channel_models.py::ric_model`; `examples/fading_channel_models.py` | Rician 信道入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `SUI_fading.m` | 是 | `src/ofdm_mimo/channel_models.py::sui_fading`; `examples/sui_channel_models.py` | SUI 衰落生成入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `SUI_parameters.m` | 是 | `src/ofdm_mimo/channel_models.py::sui_parameters`; `examples/sui_channel_models.py` | SUI 参数表入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `SV_model_ct.m` | 是 | `src/ofdm_mimo/channel_models.py::sv_model_ct`; `examples/uwb_channel_models.py` | S-V 连续时间信道入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `UWB_convert_ct.m` | 是 | `src/ofdm_mimo/channel_models.py::uwb_convert_ct`; `examples/uwb_channel_models.py` | UWB 连续到离散转换别名入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `UWB_model_ct.m` | 是 | `src/ofdm_mimo/channel_models.py::uwb_model_ct`; `examples/uwb_channel_models.py` | UWB 连续时间信道入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `UWB_parameters.m` | 是 | `src/ofdm_mimo/channel_models.py::uwb_parameters`; `examples/uwb_channel_models.py` | UWB CM 参数表入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `channel1.m` | 是 | `src/ofdm_mimo/channel_models.py::channel1`; `examples/fading_channel_models.py` | MIMO 信道加噪入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `channel_coeff.m` | 是 | `src/ofdm_mimo/channel_models.py::channel_coeff`; `examples/fading_channel_models.py` | 相关 MIMO Rayleigh 信道入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `convert_UWB_ct.m` | 是 | `src/ofdm_mimo/channel_models.py::convert_uwb_ct`; `examples/uwb_channel_models.py` | UWB 连续到离散转换入口，已通过单元测试与 quick 运行 | 5 | 是 |
+| 信道模型/衰落/路径损耗 | `ray_fading.m` | 是 | `src/ofdm_mimo/channel_models.py::ray_fading`; `examples/fading_channel_models.py` | 几何子径 Rayleigh fading 入口，已通过单元测试与 quick 运行 | 5 | 是 |
 | 可视化/绘图脚本 | `plot_2ray_exp_model.m` | 否 | - | 待转译 | 7 | 否 |
 | 可视化/绘图脚本 | `plot_CCDF.m` | 否 | - | 待转译 | 7 | 否 |
 | 可视化/绘图脚本 | `plot_FWGN.m` | 否 | - | 待转译 | 7 | 否 |
