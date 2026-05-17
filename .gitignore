@@ -4,4 +4,6 @@ __pycache__/
 .pytest_cache/
 .DS_Store
 outputs/
+.codex/
+.agent/
 *.egg-info/
