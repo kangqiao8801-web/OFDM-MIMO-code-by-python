@@ -7,9 +7,9 @@
 ## 汇总
 
 - MATLAB `.m` 文件总数：153
-- 已转译成功：74
+- 已转译成功：87
 - 部分覆盖：0
-- 未转译：79
+- 未转译：66
 
 
 ## 批次方案
@@ -21,7 +21,7 @@
 | 1 | 调制/编码/判决/误码 | 23 | 补齐 QPSK/QAM16/mapper/Viterbi/卷积编码/BER 等公共函数与必要示例 | 单元测试覆盖 MATLAB 等价输入输出；相关示例跑通 | 是 |
 | 2 | 工具/数值辅助 | 27 | `Q`、`dB2w`、补零、插值、范数、排序、MMSE 前处理等基础工具 | 单元测试为主；无图脚本保存 `.dat` 或数值摘要 | 是 |
 | 3 | OFDM/同步/信道估计 | 15 | CFO/STO、pilot、OFDM signal、削波滤波 CCDF/PDF 相关脚本 | 每个 example 跑通，保存图或 `.dat` | 是 |
-| 4 | PAPR/CCDF/削波 | 13 | PAPR、PTS、DFT spreading、oversampling、clipping 相关脚本 | 每个脚本生成 CCDF/PAPR/SQNR 图或数据 | 否 |
+| 4 | PAPR/CCDF/削波 | 13 | PAPR、PTS、DFT spreading、oversampling、clipping 相关脚本 | 每个脚本生成 CCDF/PAPR/SQNR 图或数据 | 是 |
 | 5 | 信道模型/衰落/路径损耗 | 24 | FWGN、Jakes、Ray/Ric、SUI、UWB、路径损耗模型 | 模型函数单测；绘图/仿真脚本生成图 | 否 |
 | 6 | MIMO/STBC/检测/预编码/容量 | 27 | Alamouti 扩展、MRC、MMSE/OSIC/SD/QRM、容量、预编码、STTC | 仿真脚本 quick 模式跑通，保存 BER/容量曲线或数据 | 否 |
 | 7 | 可视化/绘图脚本 | 15 | `plot_*` 脚本一对一转成 Python examples | 每个脚本生成对应 PNG | 否 |
@@ -78,19 +78,19 @@
 | OFDM/同步/信道估计 | `do_STO_CFO1.m` | 是 | `examples/do_sto_cfo1.py` | 可运行帧同步/CFO 示例，quick 模式已生成图和数据 | 3 | 是 |
 | OFDM/同步/信道估计 | `remove_CP.m` | 是 | `src/ofdm_mimo/ofdm.py::remove_cp` | 公共函数，已通过单元测试 | 已完成 | 是 |
 | OFDM/同步/信道估计 | `remove_GI.m` | 是 | `src/ofdm_mimo/ofdm.py::remove_gi` | 公共函数，已通过单元测试 | 已完成 | 是 |
-| PAPR/CCDF/削波 | `CCDF_PAPR_DFTspreading.m` | 否 | - | 待转译 | 4 | 否 |
-| PAPR/CCDF/削波 | `CCDF_PTS.m` | 否 | - | 待转译 | 4 | 否 |
-| PAPR/CCDF/削波 | `IFFT_oversampling.m` | 否 | - | 待转译 | 4 | 否 |
-| PAPR/CCDF/削波 | `PAPR.m` | 否 | - | 待转译 | 4 | 否 |
-| PAPR/CCDF/削波 | `PAPR_of_Chu.m` | 否 | - | 待转译 | 4 | 否 |
-| PAPR/CCDF/削波 | `PAPR_of_preamble.m` | 否 | - | 待转译 | 4 | 否 |
-| PAPR/CCDF/削波 | `PARR_of_preamble.m` | 否 | - | 待转译 | 4 | 否 |
-| PAPR/CCDF/削波 | `SQNR_with_quantization_clipping.m` | 否 | - | 待转译 | 4 | 否 |
-| PAPR/CCDF/削波 | `clipping.m` | 否 | - | 待转译 | 4 | 否 |
-| PAPR/CCDF/削波 | `compare_CCDF_PTS.m` | 否 | - | 待转译 | 4 | 否 |
-| PAPR/CCDF/削波 | `compare_DFT_spreading.m` | 否 | - | 待转译 | 4 | 否 |
-| PAPR/CCDF/削波 | `compare_DFT_spreading_w_psf.m` | 否 | - | 待转译 | 4 | 否 |
-| PAPR/CCDF/削波 | `single_carrier_PAPR.m` | 否 | - | 待转译 | 4 | 否 |
+| PAPR/CCDF/削波 | `CCDF_PAPR_DFTspreading.m` | 是 | `src/ofdm_mimo/ofdm.py::ccdf_papr_dft_spreading` | DFT spreading CCDF 公共函数，已通过单元测试 | 4 | 是 |
+| PAPR/CCDF/削波 | `CCDF_PTS.m` | 是 | `src/ofdm_mimo/ofdm.py::ccdf_pts` | PTS CCDF 公共函数，已通过单元测试 | 4 | 是 |
+| PAPR/CCDF/削波 | `IFFT_oversampling.m` | 是 | `src/ofdm_mimo/ofdm.py::ifft_oversampling` | MATLAB 中间补零 oversampling 语义，已通过单元测试 | 4 | 是 |
+| PAPR/CCDF/削波 | `PAPR.m` | 是 | `src/ofdm_mimo/ofdm.py::papr` | PAPR/平均功率/峰值功率 dB 入口，已通过单元测试 | 4 | 是 |
+| PAPR/CCDF/削波 | `PAPR_of_Chu.m` | 是 | `examples/papr_of_chu.py` | 可运行示例，quick 模式已生成 Chu 序列 PAPR 图和数据 | 4 | 是 |
+| PAPR/CCDF/削波 | `PAPR_of_preamble.m` | 是 | `examples/papr_of_preamble.py` | 可运行示例，quick 模式已生成 preamble PAPR 图和数据 | 4 | 是 |
+| PAPR/CCDF/削波 | `PARR_of_preamble.m` | 是 | `examples/parr_of_preamble.py` | 可运行示例，复现原 MATLAB 同名脚本的 preamble PAPR/PARR 图和数据 | 4 | 是 |
+| PAPR/CCDF/削波 | `SQNR_with_quantization_clipping.m` | 是 | `examples/sqnr_with_quantization_clipping.py` | 可运行示例，quick 模式已生成量化削波 SQNR 图和数据 | 4 | 是 |
+| PAPR/CCDF/削波 | `clipping.m` | 是 | `src/ofdm_mimo/ofdm.py::clipping` | MATLAB sigma 削波语义，已通过单元测试 | 4 | 是 |
+| PAPR/CCDF/削波 | `compare_CCDF_PTS.m` | 是 | `examples/compare_ccdf_pts.py` | 可运行示例，quick 模式已生成 OFDMA/PTS CCDF 图和数据 | 4 | 是 |
+| PAPR/CCDF/削波 | `compare_DFT_spreading.m` | 是 | `examples/compare_dft_spreading.py` | 可运行示例，quick 模式已生成 OFDMA/LFDMA/IFDMA CCDF 图和数据 | 4 | 是 |
+| PAPR/CCDF/削波 | `compare_DFT_spreading_w_psf.m` | 是 | `examples/compare_dft_spreading_w_psf.py` | 可运行示例，quick 模式已生成脉冲成形 CCDF 图和数据 | 4 | 是 |
+| PAPR/CCDF/削波 | `single_carrier_PAPR.m` | 是 | `examples/single_carrier_papr.py` | 可运行示例，quick 模式已生成单载波基带/通带 PAPR 图和数据 | 4 | 是 |
 | 信道模型/衰落/路径损耗 | `Doppler_PSD_function.m` | 否 | - | 待转译 | 5 | 否 |
 | 信道模型/衰落/路径损耗 | `Doppler_spectrum.m` | 否 | - | 待转译 | 5 | 否 |
 | 信道模型/衰落/路径损耗 | `FWGN.m` | 否 | - | 待转译 | 5 | 否 |

@@ -133,22 +133,49 @@ def sto_by_difference(y: ArrayLike, nfft: int, ng: int, com_delay: int | None = 
     return int(sto_est), mag
 
 
+def papr(x: ArrayLike) -> tuple[float, float, float]:
+    """Return PAPR, average power, and peak power in dB using MATLAB PAPR.m semantics."""
+    arr = np.asarray(x)
+    power = arr.real * arr.real + arr.imag * arr.imag
+    peak = np.max(power)
+    avg = np.mean(power)
+    return float(10 * np.log10(peak / avg)), float(10 * np.log10(avg)), float(10 * np.log10(peak))
+
+
 def ifft_oversampling(x: ArrayLike, n: int, oversampling: int) -> np.ndarray:
     arr = np.asarray(x, dtype=complex).ravel()
-    out = np.zeros(n * oversampling, dtype=complex)
-    out[::oversampling][: arr.size] = arr
-    return np.fft.ifft(out, n * oversampling)
+    if arr.size != n:
+        raise ValueError(f"Expected {n} frequency samples, got {arr.size}.")
+    nl = n * oversampling
+    spectrum = np.r_[arr[: n // 2], np.zeros(nl - n, dtype=complex), arr[n // 2 :]]
+    return oversampling * np.fft.ifft(spectrum, nl)
 
 
-def clipping(x: ArrayLike, clipping_ratio: float) -> np.ndarray:
+def clipping(
+    x: ArrayLike,
+    clipping_ratio: float,
+    sigma: float | None = None,
+    return_sigma: bool = False,
+) -> np.ndarray | tuple[np.ndarray, float]:
     arr = np.asarray(x)
-    sigma = np.sqrt(np.mean(np.abs(arr) ** 2))
+    if sigma is None:
+        dev = arr - np.mean(arr)
+        sigma = float(np.sqrt(np.vdot(dev, dev).real / arr.size))
     threshold = clipping_ratio * sigma
     magnitude = np.abs(arr)
     scale = np.ones_like(magnitude, dtype=float)
     mask = magnitude > threshold
     scale[mask] = threshold / magnitude[mask]
-    return arr * scale
+    clipped = arr * scale
+    if return_sigma:
+        return clipped, sigma
+    return clipped
+
+
+def ccdf_from_papr_db(papr_db: ArrayLike, thresholds_db: ArrayLike) -> np.ndarray:
+    values = np.asarray(papr_db, dtype=float)
+    thresholds = np.asarray(thresholds_db, dtype=float)
+    return np.array([np.mean(values > threshold) for threshold in thresholds])
 
 
 def ccdf_ofdma(
@@ -171,3 +198,99 @@ def ccdf_ofdma(
         power = np.abs(time) ** 2
         papr_db[idx] = 10 * np.log10(np.max(power) / np.mean(power))
     return np.array([np.mean(papr_db > threshold) for threshold in dbs_arr])
+
+
+def ccdf_pts(
+    n: int,
+    nos: int,
+    nsb: int,
+    b: int,
+    dbs: ArrayLike,
+    nblk: int,
+    rng: np.random.Generator | None = None,
+) -> np.ndarray:
+    rng = np.random.default_rng() if rng is None else rng
+    nnos = n * nos
+    order = 2**b
+    paprs = np.zeros(nblk)
+    for idx in range(nblk):
+        symbols = qam_mod(rng.integers(0, order, size=n), order)
+        padded = np.zeros(nnos, dtype=complex)
+        padded[::nos] = symbols
+        subblocks = np.zeros((nsb, nnos), dtype=complex)
+        width = nnos // nsb
+        for k in range(nsb):
+            sl = slice(k * width, (k + 1) * width)
+            subblocks[k, sl] = padded[sl]
+        ifft_blocks = np.fft.ifft(subblocks, nnos, axis=1)
+        weights = np.ones(nsb)
+        best = np.inf
+        for k in range(nsb):
+            candidate = weights @ ifft_blocks
+            p = np.abs(candidate) ** 2
+            current = np.max(p) / np.mean(p)
+            if current < best:
+                best = current
+            else:
+                weights[k] = 1
+            if k + 1 < nsb:
+                weights[k + 1] = -1
+        selected = weights @ ifft_blocks
+        p = np.abs(selected) ** 2
+        paprs[idx] = np.max(p) / np.mean(p)
+    return ccdf_from_papr_db(10 * np.log10(paprs), dbs)
+
+
+def raised_cosine_filter(rolloff: float, nsym: int, nos: int) -> np.ndarray:
+    t = np.arange(-nsym * nos, nsym * nos + 1, dtype=float) / nos
+    taps = np.zeros_like(t)
+    for idx, ti in enumerate(t):
+        if abs(ti) < 1e-12:
+            taps[idx] = 1.0
+        elif rolloff and abs(abs(2 * rolloff * ti) - 1) < 1e-12:
+            taps[idx] = np.pi / 4 * np.sinc(1 / (2 * rolloff))
+        else:
+            denom = 1 - (2 * rolloff * ti) ** 2
+            taps[idx] = np.sinc(ti) * np.cos(np.pi * rolloff * ti) / denom
+    return taps / np.sqrt(np.sum(taps**2)) * nos
+
+
+def ccdf_papr_dft_spreading(
+    fdma_type: str,
+    ndb: int,
+    b: int,
+    n: int,
+    thresholds_db: ArrayLike,
+    nblk: int,
+    psf: ArrayLike | None = None,
+    nos: int | None = None,
+    rng: np.random.Generator | None = None,
+) -> tuple[np.ndarray, np.ndarray]:
+    rng = np.random.default_rng() if rng is None else rng
+    order = 2**b
+    spread = n // ndb
+    paprs = np.zeros(nblk)
+    mode = fdma_type.upper()[:2]
+    for idx in range(nblk):
+        symbols = qam_mod(rng.integers(0, order, size=ndb), order)
+        if mode == "IF":
+            freq = np.zeros(n, dtype=complex)
+            freq[::spread] = np.fft.fft(symbols, ndb)
+        elif mode == "LF":
+            freq = np.r_[np.fft.fft(symbols, ndb), np.zeros(n - ndb, dtype=complex)]
+        elif mode == "OF":
+            freq = np.zeros(n, dtype=complex)
+            freq[::spread] = symbols
+        else:
+            freq = symbols
+        time = np.fft.ifft(freq, n)
+        if nos is not None:
+            upsampled = np.zeros(time.size * nos, dtype=complex)
+            upsampled[::nos] = time
+            time = upsampled
+        if psf is not None:
+            time = np.convolve(time, np.asarray(psf, dtype=float))
+        power = np.abs(time) ** 2
+        paprs[idx] = np.max(power) / np.mean(power)
+    papr_db = 10 * np.log10(paprs)
+    return ccdf_from_papr_db(papr_db, thresholds_db), paprs

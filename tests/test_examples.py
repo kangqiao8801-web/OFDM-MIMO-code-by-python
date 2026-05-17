@@ -72,3 +72,19 @@ def test_batch3_ofdm_sync_examples_write_outputs(tmp_path):
         out_dir = run_example(name, tmp_path)
         assert any(path.suffix == ".png" and path.stat().st_size > 0 for path in out_dir.iterdir())
         assert any(path.suffix == ".dat" and path.stat().st_size > 0 for path in out_dir.iterdir())
+
+
+def test_batch4_papr_examples_write_outputs(tmp_path):
+    for name in [
+        "papr_of_chu",
+        "papr_of_preamble",
+        "parr_of_preamble",
+        "compare_ccdf_pts",
+        "compare_dft_spreading",
+        "compare_dft_spreading_w_psf",
+        "single_carrier_papr",
+        "sqnr_with_quantization_clipping",
+    ]:
+        out_dir = run_example(name, tmp_path)
+        assert any(path.suffix == ".png" and path.stat().st_size > 0 for path in out_dir.iterdir())
+        assert any(path.suffix == ".dat" and path.stat().st_size > 0 for path in out_dir.iterdir())

@@ -58,7 +58,8 @@ def test_sto_estimators_and_papr_helpers_are_finite():
     os = ifft_oversampling(np.ones(4), 4, 2)
     assert os.shape == (8,)
     clipped = clipping(np.array([0.5, 2.0, -2.0]), 1.0)
-    threshold = np.sqrt(np.mean(np.array([0.5, 2.0, -2.0]) ** 2))
+    samples = np.array([0.5, 2.0, -2.0])
+    threshold = np.sqrt(np.mean((samples - np.mean(samples)) ** 2))
     np.testing.assert_allclose(clipped, np.array([0.5, threshold, -threshold]))
 
     ccdf = ccdf_ofdma(16, 2, 2, np.arange(0, 8), 8, rng=np.random.default_rng(1))
