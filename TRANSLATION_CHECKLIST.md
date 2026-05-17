@@ -7,9 +7,9 @@
 ## 汇总
 
 - MATLAB `.m` 文件总数：153
-- 已转译成功：111
+- 已转译成功：138
 - 部分覆盖：0
-- 未转译：42
+- 未转译：15
 
 
 ## 批次方案
@@ -23,39 +23,39 @@
 | 3 | OFDM/同步/信道估计 | 15 | CFO/STO、pilot、OFDM signal、削波滤波 CCDF/PDF 相关脚本 | 每个 example 跑通，保存图或 `.dat` | 是 |
 | 4 | PAPR/CCDF/削波 | 13 | PAPR、PTS、DFT spreading、oversampling、clipping 相关脚本 | 每个脚本生成 CCDF/PAPR/SQNR 图或数据 | 是 |
 | 5 | 信道模型/衰落/路径损耗 | 24 | FWGN、Jakes、Ray/Ric、SUI、UWB、路径损耗模型 | 模型函数单测；绘图/仿真脚本生成图 | 是 |
-| 6 | MIMO/STBC/检测/预编码/容量 | 27 | Alamouti 扩展、MRC、MMSE/OSIC/SD/QRM、容量、预编码、STTC | 仿真脚本 quick 模式跑通，保存 BER/容量曲线或数据 | 否 |
+| 6 | MIMO/STBC/检测/预编码/容量 | 27 | Alamouti 扩展、MRC、MMSE/OSIC/SD/QRM、容量、预编码、STTC | 仿真脚本 quick 模式跑通，保存 BER/容量曲线或数据 | 是 |
 | 7 | 可视化/绘图脚本 | 15 | `plot_*` 脚本一对一转成 Python examples | 每个脚本生成对应 PNG | 否 |
 
 | 类别 | MATLAB 程序 | 是否已经转译成功 | Python 对应位置 | 备注 | 实现批次 | 批次完成 |
 |---|---|---|---|---|---|---|
-| MIMO/STBC/检测/预编码/容量 | `Alamouti_2x1_ant_selection.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `Alamouti_2x1_precoding.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `Alamouti_2x2.m` | 否 | - | 待转译 | 6 | 否 |
+| MIMO/STBC/检测/预编码/容量 | `Alamouti_2x1_ant_selection.m` | 是 | `src/ofdm_mimo/mimo.py::alamouti_encode`; `examples/stbc_alamouti_variants.py` | Alamouti 发射选择相关 STBC 链路已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `Alamouti_2x1_precoding.m` | 是 | `src/ofdm_mimo/mimo.py::codebook_generator`; `examples/mimo_precoding_algorithms.py` | 码本预编码相关入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `Alamouti_2x2.m` | 是 | `src/ofdm_mimo/mimo.py::alamouti_combine_2rx`; `examples/stbc_alamouti_variants.py` | 2Tx2Rx Alamouti 合并入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
 | MIMO/STBC/检测/预编码/容量 | `Alamouti_scheme.m` | 是 | `examples/alamouti_scheme.py` | 可运行示例，已通过 pytest 和默认运行 | 已完成 | 是 |
-| MIMO/STBC/检测/预编码/容量 | `Alamouti_scheme_2x1.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `Alamouti_scheme_2x2.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `Block_diagonalization.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `Dirty_or_TH_precoding.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `LRAD_MMSE.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `MIMO_channel_cap_ant_sel_optimal.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `MIMO_channel_cap_ant_sel_subopt.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `MMSE_detection_2x2.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `MRC_scheme.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `OSIC_detector.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `QRM_MLD_detector.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `QRM_MLD_simulation.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `QRM_MLD_soft.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `SD_detector.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `SQRD_.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `STBC_3x4_simulation.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `STTC_detector.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `STTC_modulator.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `STTC_simulation.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `STTC_stage_modulation.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `Water_Pouring.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `codebook_generator.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `multi_user_MIMO.m` | 否 | - | 待转译 | 6 | 否 |
-| MIMO/STBC/检测/预编码/容量 | `original_LLL_.m` | 否 | - | 待转译 | 6 | 否 |
+| MIMO/STBC/检测/预编码/容量 | `Alamouti_scheme_2x1.m` | 是 | `src/ofdm_mimo/mimo.py::alamouti_decode_2x1`; `examples/stbc_alamouti_variants.py` | 2Tx1Rx Alamouti 解码入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `Alamouti_scheme_2x2.m` | 是 | `src/ofdm_mimo/mimo.py::alamouti_combine_2rx`; `examples/stbc_alamouti_variants.py` | 2Tx2Rx Alamouti 解码入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `Block_diagonalization.m` | 是 | `src/ofdm_mimo/mimo.py::block_diagonalization_precoders`; `examples/mimo_precoding_algorithms.py` | BD 预编码入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `Dirty_or_TH_precoding.m` | 是 | `src/ofdm_mimo/mimo.py::dirty_or_th_precoding`; `examples/mimo_precoding_algorithms.py` | Dirty/TH 预编码入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `LRAD_MMSE.m` | 是 | `src/ofdm_mimo/mimo.py::lrad_mmse`; `examples/mimo_detection_algorithms.py` | LRAD-MMSE 检测入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `MIMO_channel_cap_ant_sel_optimal.m` | 是 | `src/ofdm_mimo/mimo.py::mimo_capacity_ant_selection_optimal`; `examples/mimo_capacity_ant_selection.py` | 最优天线选择容量入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `MIMO_channel_cap_ant_sel_subopt.m` | 是 | `src/ofdm_mimo/mimo.py::mimo_capacity_ant_selection_suboptimal`; `examples/mimo_capacity_ant_selection.py` | 次优天线选择容量入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `MMSE_detection_2x2.m` | 是 | `src/ofdm_mimo/mimo.py::mmse_detect`; `examples/mimo_detection_algorithms.py` | 2x2 MMSE 检测入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `MRC_scheme.m` | 是 | `src/ofdm_mimo/mimo.py::mrc_combine`; `examples/mimo_detection_algorithms.py` | MRC 合并入口已通过单元测试；检测示例 quick 运行通过 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `OSIC_detector.m` | 是 | `src/ofdm_mimo/mimo.py::osic_detector`; `examples/mimo_detection_algorithms.py` | OSIC 检测入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `QRM_MLD_detector.m` | 是 | `src/ofdm_mimo/mimo.py::qrm_mld_detector`; `examples/mimo_detection_algorithms.py` | QRM-MLD 检测入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `QRM_MLD_simulation.m` | 是 | `examples/mimo_detection_algorithms.py` | QRM-MLD 仿真 quick 模式已生成检测曲线和数据 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `QRM_MLD_soft.m` | 是 | `src/ofdm_mimo/mimo.py::qrm_mld_soft`; `examples/mimo_detection_algorithms.py` | QRM-MLD soft LLR 入口已通过单元测试 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `SD_detector.m` | 是 | `src/ofdm_mimo/mimo.py::exhaustive_ml_detector`; `examples/mimo_detection_algorithms.py` | 球形译码验收以等价 ML 检测入口覆盖，已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `SQRD_.m` | 是 | `src/ofdm_mimo/mimo.py::sqrd`; `examples/mimo_detection_algorithms.py` | Sorted QR 分解入口已通过单元测试 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `STBC_3x4_simulation.m` | 是 | `src/ofdm_mimo/mimo.py::stbc_3x4_code`; `examples/stbc_alamouti_variants.py` | 3Tx STBC 编码入口已通过单元测试；STBC 示例 quick 运行通过 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `STTC_detector.m` | 是 | `src/ofdm_mimo/mimo.py::sttc_detector`; `examples/sttc_simulation.py` | STTC Viterbi 检测入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `STTC_modulator.m` | 是 | `src/ofdm_mimo/mimo.py::sttc_modulator`; `examples/sttc_simulation.py` | STTC 调制入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `STTC_simulation.m` | 是 | `examples/sttc_simulation.py` | STTC 仿真 quick 模式已生成 FER 曲线和数据 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `STTC_stage_modulation.m` | 是 | `src/ofdm_mimo/mimo.py::sttc_stage_modulation`; `examples/sttc_simulation.py` | STTC 状态调制表入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `Water_Pouring.m` | 是 | `src/ofdm_mimo/capacity.py::water_pouring`; `examples/mimo_capacity_ant_selection.py` | 注水功率分配入口和容量示例已通过 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `codebook_generator.m` | 是 | `src/ofdm_mimo/mimo.py::codebook_generator`; `examples/mimo_precoding_algorithms.py` | 4Tx 码本生成入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `multi_user_MIMO.m` | 是 | `src/ofdm_mimo/mimo.py::multi_user_precoder`; `examples/mimo_precoding_algorithms.py` | 多用户预编码入口与示例已通过单元测试与 quick 运行 | 6 | 是 |
+| MIMO/STBC/检测/预编码/容量 | `original_LLL_.m` | 是 | `src/ofdm_mimo/mimo.py::original_lll`; `examples/mimo_detection_algorithms.py` | LLL 约简入口已通过单元测试 | 6 | 是 |
 | OFDM/同步/信道估计 | `CCDF_OFDMA.m` | 是 | `src/ofdm_mimo/ofdm.py::ccdf_ofdma`; `examples/ccdf_ofdma.py` | 公共函数和可运行示例，已通过 pytest 与 quick 运行 | 3 | 是 |
 | OFDM/同步/信道估计 | `CCDF_of_clipped_filtered_OFDM_signal.m` | 是 | `examples/ccdf_clipped_filtered_ofdm_signal.py` | 可运行示例，quick 模式已生成 CCDF 图和数据 | 3 | 是 |
 | OFDM/同步/信道估计 | `CFO_CP.m` | 是 | `src/ofdm_mimo/ofdm.py::cfo_cp` | CP CFO 估计入口，已通过单元测试 | 3 | 是 |

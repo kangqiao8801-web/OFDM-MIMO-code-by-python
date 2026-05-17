@@ -101,3 +101,16 @@ def test_batch5_channel_model_examples_write_outputs(tmp_path):
         out_dir = run_example(name, tmp_path)
         assert any(path.suffix == ".png" and path.stat().st_size > 0 for path in out_dir.iterdir())
         assert any(path.suffix == ".dat" and path.stat().st_size > 0 for path in out_dir.iterdir())
+
+
+def test_batch6_mimo_examples_write_outputs(tmp_path):
+    for name in [
+        "stbc_alamouti_variants",
+        "mimo_detection_algorithms",
+        "mimo_precoding_algorithms",
+        "mimo_capacity_ant_selection",
+        "sttc_simulation",
+    ]:
+        out_dir = run_example(name, tmp_path)
+        assert any(path.suffix == ".png" and path.stat().st_size > 0 for path in out_dir.iterdir())
+        assert any(path.suffix == ".dat" and path.stat().st_size > 0 for path in out_dir.iterdir())
