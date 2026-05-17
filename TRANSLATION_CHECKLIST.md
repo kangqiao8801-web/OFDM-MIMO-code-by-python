@@ -7,9 +7,9 @@
 ## 汇总
 
 - MATLAB `.m` 文件总数：153
-- 已转译成功：32
+- 已转译成功：59
 - 部分覆盖：0
-- 未转译：121
+- 未转译：94
 
 
 ## 批次方案
@@ -19,7 +19,7 @@
 | 批次 | 范围 | 数量 | 主要交付 | 验收方式 | 批次完成 |
 |---|---|---:|---|---|---|
 | 1 | 调制/编码/判决/误码 | 23 | 补齐 QPSK/QAM16/mapper/Viterbi/卷积编码/BER 等公共函数与必要示例 | 单元测试覆盖 MATLAB 等价输入输出；相关示例跑通 | 是 |
-| 2 | 工具/数值辅助 | 27 | `Q`、`dB2w`、补零、插值、范数、排序、MMSE 前处理等基础工具 | 单元测试为主；无图脚本保存 `.dat` 或数值摘要 | 否 |
+| 2 | 工具/数值辅助 | 27 | `Q`、`dB2w`、补零、插值、范数、排序、MMSE 前处理等基础工具 | 单元测试为主；无图脚本保存 `.dat` 或数值摘要 | 是 |
 | 3 | OFDM/同步/信道估计 | 15 | CFO/STO、pilot、OFDM signal、削波滤波 CCDF/PDF 相关脚本 | 每个 example 跑通，保存图或 `.dat` | 否 |
 | 4 | PAPR/CCDF/削波 | 13 | PAPR、PTS、DFT spreading、oversampling、clipping 相关脚本 | 每个脚本生成 CCDF/PAPR/SQNR 图或数据 | 否 |
 | 5 | 信道模型/衰落/路径损耗 | 24 | FWGN、Jakes、Ray/Ric、SUI、UWB、路径损耗模型 | 模型函数单测；绘图/仿真脚本生成图 | 否 |
@@ -130,34 +130,34 @@
 | 可视化/绘图脚本 | `plot_ber.m` | 否 | - | 待转译 | 7 | 否 |
 | 可视化/绘图脚本 | `plot_modified_FWGN.m` | 否 | - | 待转译 | 7 | 否 |
 | 可视化/绘图脚本 | `plot_ray_fading.m` | 否 | - | 待转译 | 7 | 否 |
-| 工具/数值辅助 | `Ergodic_Capacity_CDF.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `Ergodic_Capacity_Correlation.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `Ergodic_Capacity_vs_SNR.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `OL_CL_Comparison.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `Q.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `assign_offset.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `bound.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `branch_metric.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `calculate_norm.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `compare_vector_norm.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `dB2w.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `deci2bin.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `equalpower_subray.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `exp_pdp.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `gen_filter.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `gen_phase.m` | 否 | - | 待转译 | 2 | 否 |
+| 工具/数值辅助 | `Ergodic_Capacity_CDF.m` | 是 | `examples/ergodic_capacity_cdf.py` | 可运行示例，quick 模式已生成 CDF 图和数据 | 2 | 是 |
+| 工具/数值辅助 | `Ergodic_Capacity_Correlation.m` | 是 | `examples/ergodic_capacity_correlation.py` | 可运行示例，quick 模式已生成相关容量图和数据 | 2 | 是 |
+| 工具/数值辅助 | `Ergodic_Capacity_vs_SNR.m` | 是 | `examples/ergodic_capacity_vs_snr.py` | 可运行示例，quick 模式已生成容量曲线和数据 | 2 | 是 |
+| 工具/数值辅助 | `OL_CL_Comparison.m` | 是 | `examples/ol_cl_comparison.py` | 可运行示例，quick 模式已生成开闭环容量图和数据 | 2 | 是 |
+| 工具/数值辅助 | `Q.m` | 是 | `src/ofdm_mimo/utils.py::qfunc` | Q 函数入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `assign_offset.m` | 是 | `src/ofdm_mimo/utils.py::assign_offset` | AoA/AoD offset 入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `bound.m` | 是 | `src/ofdm_mimo/utils.py::bound` | 球形译码边界计算入口，已提供显式参数版本 | 2 | 是 |
+| 工具/数值辅助 | `branch_metric.m` | 是 | `src/ofdm_mimo/utils.py::branch_metric` | 分支度量入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `calculate_norm.m` | 是 | `src/ofdm_mimo/utils.py::calculate_norm` | QRM/MLD norm 计算入口，已提供显式参数版本 | 2 | 是 |
+| 工具/数值辅助 | `compare_vector_norm.m` | 是 | `src/ofdm_mimo/utils.py::compare_vector_norm` | 球形译码候选比较入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `dB2w.m` | 是 | `src/ofdm_mimo/utils.py::db2w` | dB 到线性功率入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `deci2bin.m` | 是 | `src/ofdm_mimo/utils.py::deci2bin` | 十进制转 bit 向量入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `equalpower_subray.m` | 是 | `src/ofdm_mimo/utils.py::equalpower_subray` | SCM 子径角偏移入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `exp_pdp.m` | 是 | `src/ofdm_mimo/utils.py::exp_pdp` | 指数 PDP 入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `gen_filter.m` | 是 | `src/ofdm_mimo/utils.py::gen_filter` | Doppler FIR 滤波器入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `gen_phase.m` | 是 | `src/ofdm_mimo/utils.py::gen_phase` | BS/MS 相位和角度生成入口，已通过单元测试 | 2 | 是 |
 | 工具/数值辅助 | `guard_interval.m` | 是 | `src/ofdm_mimo/ofdm.py::guard_interval` | 公共函数，已通过单元测试 | 已完成 | 是 |
-| 工具/数值辅助 | `interpolate.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `list_length.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `pre_MMSE.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `radius_control.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `sort_matrix.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `stage_processing.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `stage_processing1.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `test_orthogonality.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `vector_comparison.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `zero_insertion.m` | 否 | - | 待转译 | 2 | 否 |
-| 工具/数值辅助 | `zero_padding.m` | 否 | - | 待转译 | 2 | 否 |
+| 工具/数值辅助 | `interpolate.m` | 是 | `src/ofdm_mimo/utils.py::interpolate` | 信道插值入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `list_length.m` | 是 | `src/ofdm_mimo/utils.py::list_length` | 候选列表长度入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `pre_MMSE.m` | 是 | `examples/pre_mmse.py` | 可运行示例，quick 模式已生成 BER 图和数据 | 2 | 是 |
+| 工具/数值辅助 | `radius_control.m` | 是 | `src/ofdm_mimo/utils.py::radius_control` | 球形译码半径控制入口，已提供显式参数版本 | 2 | 是 |
+| 工具/数值辅助 | `sort_matrix.m` | 是 | `src/ofdm_mimo/utils.py::sort_matrix` | 矩阵排序入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `stage_processing.m` | 是 | `src/ofdm_mimo/utils.py::stage_processing` | 球形译码 stage 处理入口，已提供显式参数版本 | 2 | 是 |
+| 工具/数值辅助 | `stage_processing1.m` | 是 | `src/ofdm_mimo/utils.py::stage_processing1` | QRM/MLD stage 处理入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `test_orthogonality.m` | 是 | `examples/test_orthogonality.py` | 可运行示例，quick 模式已生成正交性图和数据 | 2 | 是 |
+| 工具/数值辅助 | `vector_comparison.m` | 是 | `src/ofdm_mimo/utils.py::vector_comparison` | 向量比较入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `zero_insertion.m` | 是 | `src/ofdm_mimo/utils.py::zero_insertion` | 零插入入口，已通过单元测试 | 2 | 是 |
+| 工具/数值辅助 | `zero_padding.m` | 是 | `src/ofdm_mimo/utils.py::zero_padding` | 中心补零入口，已通过单元测试 | 2 | 是 |
 | 调制/编码/判决/误码 | `Conv_encoder.m` | 是 | `src/ofdm_mimo/coding.py::conv_encoder` | 一对一卷积编码入口，已通过单元测试 | 1 | 是 |
 | 调制/编码/判决/误码 | `QAM16_demapper.m` | 是 | `src/ofdm_mimo/modulation.py::qam16_demapper` | 一对一 16QAM 解映射入口，已通过单元测试 | 1 | 是 |
 | 调制/编码/判决/误码 | `QAM16_mod.m` | 是 | `src/ofdm_mimo/modulation.py::qam16_mod` | 一对一 16QAM 映射入口，已通过单元测试 | 1 | 是 |

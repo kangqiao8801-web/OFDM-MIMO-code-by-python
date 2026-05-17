@@ -5,6 +5,7 @@ from .coding import conv_encoder, convolution_encoder, trellis_encoder, viterbi_
 from .metrics import ber, ber_qam, bit_error_rate
 from .modulation import qam16_demapper, qam16_mod, qam_demod, qam_mod, qpsk_demapper, qpsk_mapper
 from .ofdm import add_cp, guard_interval, remove_cp, remove_gi
+from .utils import db2w, qfunc
 
 __all__ = [
     "add_cp",
@@ -13,6 +14,7 @@ __all__ = [
     "bit_error_rate",
     "conv_encoder",
     "convolution_encoder",
+    "db2w",
     "guard_interval",
     "ls_ce",
     "mmse_ce",
@@ -22,6 +24,7 @@ __all__ = [
     "qam_mod",
     "qpsk_demapper",
     "qpsk_mapper",
+    "qfunc",
     "remove_cp",
     "remove_gi",
     "trellis_encoder",

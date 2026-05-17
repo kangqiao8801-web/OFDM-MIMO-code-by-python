@@ -43,3 +43,17 @@ def test_soft_hard_siso_example_writes_outputs(tmp_path):
 
     assert (out_dir / "per.png").stat().st_size > 0
     assert (out_dir / "per.dat").stat().st_size > 0
+
+
+def test_batch2_capacity_examples_write_outputs(tmp_path):
+    for name in [
+        "ergodic_capacity_cdf",
+        "ergodic_capacity_correlation",
+        "ergodic_capacity_vs_snr",
+        "ol_cl_comparison",
+        "pre_mmse",
+        "test_orthogonality",
+    ]:
+        out_dir = run_example(name, tmp_path)
+        assert any(path.suffix == ".png" and path.stat().st_size > 0 for path in out_dir.iterdir())
+        assert any(path.suffix == ".dat" and path.stat().st_size > 0 for path in out_dir.iterdir())
