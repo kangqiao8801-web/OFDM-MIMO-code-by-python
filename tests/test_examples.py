@@ -36,3 +36,10 @@ def test_ofdm_basic_example_writes_outputs(tmp_path):
 
     assert (out_dir / "ber.png").stat().st_size > 0
     assert (out_dir / "OFDM_BER_AWGN_CP_GL16.dat").stat().st_size > 0
+
+
+def test_soft_hard_siso_example_writes_outputs(tmp_path):
+    out_dir = run_example("soft_hard_siso", tmp_path)
+
+    assert (out_dir / "per.png").stat().st_size > 0
+    assert (out_dir / "per.dat").stat().st_size > 0

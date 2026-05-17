@@ -7,9 +7,9 @@
 ## 汇总
 
 - MATLAB `.m` 文件总数：153
-- 已转译成功：9
-- 部分覆盖：6
-- 未转译：138
+- 已转译成功：32
+- 部分覆盖：0
+- 未转译：121
 
 
 ## 批次方案
@@ -18,7 +18,7 @@
 
 | 批次 | 范围 | 数量 | 主要交付 | 验收方式 | 批次完成 |
 |---|---|---:|---|---|---|
-| 1 | 调制/编码/判决/误码 | 23 | 补齐 QPSK/QAM16/mapper/Viterbi/卷积编码/BER 等公共函数与必要示例 | 单元测试覆盖 MATLAB 等价输入输出；相关示例跑通 | 否 |
+| 1 | 调制/编码/判决/误码 | 23 | 补齐 QPSK/QAM16/mapper/Viterbi/卷积编码/BER 等公共函数与必要示例 | 单元测试覆盖 MATLAB 等价输入输出；相关示例跑通 | 是 |
 | 2 | 工具/数值辅助 | 27 | `Q`、`dB2w`、补零、插值、范数、排序、MMSE 前处理等基础工具 | 单元测试为主；无图脚本保存 `.dat` 或数值摘要 | 否 |
 | 3 | OFDM/同步/信道估计 | 15 | CFO/STO、pilot、OFDM signal、削波滤波 CCDF/PDF 相关脚本 | 每个 example 跑通，保存图或 `.dat` | 否 |
 | 4 | PAPR/CCDF/削波 | 13 | PAPR、PTS、DFT spreading、oversampling、clipping 相关脚本 | 每个脚本生成 CCDF/PAPR/SQNR 图或数据 | 否 |
@@ -158,26 +158,26 @@
 | 工具/数值辅助 | `vector_comparison.m` | 否 | - | 待转译 | 2 | 否 |
 | 工具/数值辅助 | `zero_insertion.m` | 否 | - | 待转译 | 2 | 否 |
 | 工具/数值辅助 | `zero_padding.m` | 否 | - | 待转译 | 2 | 否 |
-| 调制/编码/判决/误码 | `Conv_encoder.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `QAM16_demapper.m` | 部分 | `src/ofdm_mimo/modulation.py::qam_demod` | 16QAM 能力已覆盖；尚未一对一函数入口 | 1 | 否 |
-| 调制/编码/判决/误码 | `QAM16_mod.m` | 部分 | `src/ofdm_mimo/modulation.py::qam_mod` | 16QAM 能力已覆盖；尚未一对一函数入口 | 1 | 否 |
-| 调制/编码/判决/误码 | `QAM16_real_slicer.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `QAM16_slicer.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `QAM16_slicer_soft.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `QPSK_demapper.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `QPSK_mapper.m` | 部分 | `src/ofdm_mimo/modulation.py::qpsk_mod` | QPSK 能力已覆盖；尚未一对一函数入口 | 1 | 否 |
-| 调制/编码/判决/误码 | `Viterbi_decode.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `Viterbi_decode_soft.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `Viterbi_init.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `ber.m` | 部分 | `src/ofdm_mimo/metrics.py::bit_error_rate` | BER 核心能力已覆盖；尚未按 MATLAB 函数签名一对一验收 | 1 | 否 |
-| 调制/编码/判决/误码 | `ber_QAM.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `convolution_encoder.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `data_generator.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `mapper.m` | 部分 | `src/ofdm_mimo/modulation.py` | 部分调制映射能力已覆盖；尚未覆盖完整 mapper 行为 | 1 | 否 |
-| 调制/编码/判决/误码 | `modulation.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `modulator.m` | 部分 | `src/ofdm_mimo/modulation.py` | 调制核心能力已覆盖；尚未一对一函数入口 | 1 | 否 |
-| 调制/编码/判决/误码 | `modulo.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `soft_decision_sigma.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `soft_hard_SISO.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `soft_output2x2.m` | 否 | - | 待转译 | 1 | 否 |
-| 调制/编码/判决/误码 | `trellis_encoder.m` | 否 | - | 待转译 | 1 | 否 |
+| 调制/编码/判决/误码 | `Conv_encoder.m` | 是 | `src/ofdm_mimo/coding.py::conv_encoder` | 一对一卷积编码入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `QAM16_demapper.m` | 是 | `src/ofdm_mimo/modulation.py::qam16_demapper` | 一对一 16QAM 解映射入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `QAM16_mod.m` | 是 | `src/ofdm_mimo/modulation.py::qam16_mod` | 一对一 16QAM 映射入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `QAM16_real_slicer.m` | 是 | `src/ofdm_mimo/modulation.py::qam16_real_slicer` | 一对一实部切片入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `QAM16_slicer.m` | 是 | `src/ofdm_mimo/modulation.py::qam16_slicer` | 一对一 16QAM 硬切片入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `QAM16_slicer_soft.m` | 是 | `src/ofdm_mimo/modulation.py::qam16_slicer_soft` | 一对一软判决比特入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `QPSK_demapper.m` | 是 | `src/ofdm_mimo/modulation.py::qpsk_demapper` | 一对一 QPSK 解映射入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `QPSK_mapper.m` | 是 | `src/ofdm_mimo/modulation.py::qpsk_mapper` | 一对一 QPSK 映射入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `Viterbi_decode.m` | 是 | `src/ofdm_mimo/coding.py::viterbi_decode` | 硬判决 Viterbi 解码入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `Viterbi_decode_soft.m` | 是 | `src/ofdm_mimo/coding.py::viterbi_decode_soft` | 软判决 Viterbi 解码入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `Viterbi_init.m` | 是 | `src/ofdm_mimo/coding.py::viterbi_init` | Viterbi trellis 初始化入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `ber.m` | 是 | `src/ofdm_mimo/metrics.py::ber` | MATLAB persistent BER 语义入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `ber_QAM.m` | 是 | `src/ofdm_mimo/metrics.py::ber_qam` | 解析 BER 曲线入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `convolution_encoder.m` | 是 | `src/ofdm_mimo/coding.py::convolution_encoder` | 矩阵形式卷积编码入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `data_generator.m` | 是 | `src/ofdm_mimo/modulation.py::data_generator` | 随机数据和零尾生成入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `mapper.m` | 是 | `src/ofdm_mimo/modulation.py::mapper` | PSK/QAM 随机或完整星座生成入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `modulation.m` | 是 | `src/ofdm_mimo/modulation.py::modulate_carrier` | 载波调制波形生成入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `modulator.m` | 是 | `src/ofdm_mimo/modulation.py::modulator` | 按比特宽度调制入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `modulo.m` | 是 | `src/ofdm_mimo/modulation.py::modulo` | Tomlinson-Harashima modulo 入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `soft_decision_sigma.m` | 是 | `src/ofdm_mimo/modulation.py::soft_decision_sigma` | 软度量生成入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `soft_hard_SISO.m` | 是 | `examples/soft_hard_siso.py` | 可运行示例，quick 模式已生成 PER 图和数据 | 1 | 是 |
+| 调制/编码/判决/误码 | `soft_output2x2.m` | 是 | `src/ofdm_mimo/modulation.py::soft_output2x2` | 2x2 软输出入口，已通过单元测试 | 1 | 是 |
+| 调制/编码/判决/误码 | `trellis_encoder.m` | 是 | `src/ofdm_mimo/coding.py::trellis_encoder` | STTC trellis 编码入口，已通过单元测试 | 1 | 是 |
