@@ -1,15 +1,15 @@
 # MATLAB 到 Python 转译清单
 
-更新时间：2026-05-17
+更新时间：2026-05-18
 
 状态定义：`是` = 已有 Python 等价实现并通过当前测试或示例运行；`部分` = 公共能力已覆盖但还没有一对一完整验收；`否` = 尚未转译。
 
 ## 汇总
 
 - MATLAB `.m` 文件总数：153
-- 已转译成功：138
+- 已转译成功：153
 - 部分覆盖：0
-- 未转译：15
+- 未转译：0
 
 
 ## 批次方案
@@ -24,7 +24,7 @@
 | 4 | PAPR/CCDF/削波 | 13 | PAPR、PTS、DFT spreading、oversampling、clipping 相关脚本 | 每个脚本生成 CCDF/PAPR/SQNR 图或数据 | 是 |
 | 5 | 信道模型/衰落/路径损耗 | 24 | FWGN、Jakes、Ray/Ric、SUI、UWB、路径损耗模型 | 模型函数单测；绘图/仿真脚本生成图 | 是 |
 | 6 | MIMO/STBC/检测/预编码/容量 | 27 | Alamouti 扩展、MRC、MMSE/OSIC/SD/QRM、容量、预编码、STTC | 仿真脚本 quick 模式跑通，保存 BER/容量曲线或数据 | 是 |
-| 7 | 可视化/绘图脚本 | 15 | `plot_*` 脚本一对一转成 Python examples | 每个脚本生成对应 PNG | 否 |
+| 7 | 可视化/绘图脚本 | 15 | `plot_*` 脚本一对一转成 Python examples | 每个脚本生成对应 PNG | 是 |
 
 | 类别 | MATLAB 程序 | 是否已经转译成功 | Python 对应位置 | 备注 | 实现批次 | 批次完成 |
 |---|---|---|---|---|---|---|
@@ -115,21 +115,21 @@
 | 信道模型/衰落/路径损耗 | `channel_coeff.m` | 是 | `src/ofdm_mimo/channel_models.py::channel_coeff`; `examples/fading_channel_models.py` | 相关 MIMO Rayleigh 信道入口，已通过单元测试与 quick 运行 | 5 | 是 |
 | 信道模型/衰落/路径损耗 | `convert_UWB_ct.m` | 是 | `src/ofdm_mimo/channel_models.py::convert_uwb_ct`; `examples/uwb_channel_models.py` | UWB 连续到离散转换入口，已通过单元测试与 quick 运行 | 5 | 是 |
 | 信道模型/衰落/路径损耗 | `ray_fading.m` | 是 | `src/ofdm_mimo/channel_models.py::ray_fading`; `examples/fading_channel_models.py` | 几何子径 Rayleigh fading 入口，已通过单元测试与 quick 运行 | 5 | 是 |
-| 可视化/绘图脚本 | `plot_2ray_exp_model.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_CCDF.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_FWGN.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_IEEE80211_model.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_Jakes_model.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_PL_Hata.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_PL_IEEE80216d.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_PL_general.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_Ray_Ric_channel.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_SUI_channel.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_SV_model_ct.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_UWB_channel.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_ber.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_modified_FWGN.m` | 否 | - | 待转译 | 7 | 否 |
-| 可视化/绘图脚本 | `plot_ray_fading.m` | 否 | - | 待转译 | 7 | 否 |
+| 可视化/绘图脚本 | `plot_2ray_exp_model.m` | 是 | `examples/plot_2ray_exp_model.py` | 一对一绘图示例，quick 模式已生成 2-ray/指数 PDP 图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_CCDF.m` | 是 | `examples/plot_ccdf.py` | 一对一绘图示例，quick 模式已生成 OFDM PAPR CCDF 图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_FWGN.m` | 是 | `examples/plot_fwgn.py` | 一对一绘图示例，quick 模式已生成 FWGN 包络/幅相直方图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_IEEE80211_model.m` | 是 | `examples/plot_ieee80211_model.py` | 一对一绘图示例，quick 模式已生成 IEEE 802.11 PDP/频响图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_Jakes_model.m` | 是 | `examples/plot_jakes_model.py` | 一对一绘图示例，quick 模式已生成 Jakes 包络、相关和 Doppler 图及数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_PL_Hata.m` | 是 | `examples/plot_pl_hata.py` | 一对一绘图示例，quick 模式已生成 Hata 路径损耗图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_PL_IEEE80216d.m` | 是 | `examples/plot_pl_ieee80216d.py` | 一对一绘图示例，quick 模式已生成 IEEE 802.16d 路径损耗图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_PL_general.m` | 是 | `examples/plot_pl_general.py` | 一对一绘图示例，quick 模式已生成通用路径损耗图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_Ray_Ric_channel.m` | 是 | `examples/plot_ray_ric_channel.py` | 一对一绘图示例，quick 模式已生成 Rayleigh/Rician 幅度直方图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_SUI_channel.m` | 是 | `examples/plot_sui_channel.py` | 一对一绘图示例，quick 模式已生成 SUI PDP/时变衰落/Doppler 图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_SV_model_ct.m` | 是 | `examples/plot_sv_model_ct.py` | 一对一绘图示例，quick 模式已生成 S-V 到达分布/冲激响应/阴影图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_UWB_channel.m` | 是 | `examples/plot_uwb_channel.py` | 一对一绘图示例，quick 模式已生成 UWB 信道统计图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_ber.m` | 是 | `examples/plot_ber.py` | 一对一绘图示例，支持 `--input` 仿真数据，quick 模式已生成解析/仿真 BER 图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_modified_FWGN.m` | 是 | `examples/plot_modified_fwgn.py` | 一对一绘图示例，quick 模式已生成 modified FWGN 频域/时域图和数据 | 7 | 是 |
+| 可视化/绘图脚本 | `plot_ray_fading.m` | 是 | `examples/plot_ray_fading.py` | 一对一绘图示例，quick 模式已生成 SCM Ray fading 包络图和数据 | 7 | 是 |
 | 工具/数值辅助 | `Ergodic_Capacity_CDF.m` | 是 | `examples/ergodic_capacity_cdf.py` | 可运行示例，quick 模式已生成 CDF 图和数据 | 2 | 是 |
 | 工具/数值辅助 | `Ergodic_Capacity_Correlation.m` | 是 | `examples/ergodic_capacity_correlation.py` | 可运行示例，quick 模式已生成相关容量图和数据 | 2 | 是 |
 | 工具/数值辅助 | `Ergodic_Capacity_vs_SNR.m` | 是 | `examples/ergodic_capacity_vs_snr.py` | 可运行示例，quick 模式已生成容量曲线和数据 | 2 | 是 |

@@ -114,3 +114,26 @@ def test_batch6_mimo_examples_write_outputs(tmp_path):
         out_dir = run_example(name, tmp_path)
         assert any(path.suffix == ".png" and path.stat().st_size > 0 for path in out_dir.iterdir())
         assert any(path.suffix == ".dat" and path.stat().st_size > 0 for path in out_dir.iterdir())
+
+
+def test_batch7_plot_examples_write_outputs(tmp_path):
+    for name in [
+        "plot_2ray_exp_model",
+        "plot_ccdf",
+        "plot_fwgn",
+        "plot_ieee80211_model",
+        "plot_jakes_model",
+        "plot_pl_hata",
+        "plot_pl_ieee80216d",
+        "plot_pl_general",
+        "plot_ray_ric_channel",
+        "plot_sui_channel",
+        "plot_sv_model_ct",
+        "plot_uwb_channel",
+        "plot_ber",
+        "plot_modified_fwgn",
+        "plot_ray_fading",
+    ]:
+        out_dir = run_example(name, tmp_path)
+        assert any(path.suffix == ".png" and path.stat().st_size > 0 for path in out_dir.iterdir())
+        assert any(path.suffix == ".dat" and path.stat().st_size > 0 for path in out_dir.iterdir())
